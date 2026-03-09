@@ -85,9 +85,9 @@ class Ui_MainWindow(object):
         self.calculate_button.setText(_translate("MainWindow", "Рассчитать"))
 
 
-<<<<<<< HEAD
-class
-=======
+
+
+
 class MainWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -101,4 +101,4 @@ app = QApplication(sys.argv)
 w =MainWindow()
 w.show()
 app.exec_()
->>>>>>> f887bac (теперь запускаеться)
+
