@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtGui import QPen,QBrush,QColor
 
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor,QPen
 
 import sqlite3 as sq
 
@@ -214,11 +215,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.scene.addLine(-1000,0,1000,0,black)
         self.ui.scene.addLine(0,-1000,0,1000,black)
 
-
-# main = Ui_Form()
-# main.create()
-# main.load()
-# main.setupUi()
+        # for i in range(10):
+        #     mnog=i*100
+        #     self.ui.scene.addText(str(mnog),)
 app = QApplication(sys.argv)
 w =MainWindow()
 w.ui.create()
