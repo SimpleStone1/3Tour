@@ -215,9 +215,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.scene.addLine(-1000,0,1000,0,black)
         self.ui.scene.addLine(0,-1000,0,1000,black)
 
-        # for i in range(10):
-        #     mnog=i*100
-        #     self.ui.scene.addText(str(mnog),)
+        for i in range(10):
+            mnog=i*100
+            self.ui.scene.addText(str(mnog),)
+
+
+            
 app = QApplication(sys.argv)
 w =MainWindow()
 w.ui.create()
