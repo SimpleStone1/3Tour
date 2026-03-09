@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication
-
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
 
 class Ui_Form(object):
     def setupUi(self, MainWindow):
@@ -55,6 +56,9 @@ class Ui_Form(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.scene = QtWidgets.QGraphicsScene(self.graphicsView)
+        self.graphicsView.setScene(self.scene)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -74,6 +78,12 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = Ui_Form()
         self.ui.setupUi(self)
+
+
+        white = QColor(255,255,255,255)
+        self.ui.scene.setBackgroundBrush(white)
+        
+
 
 
 app = QApplication(sys.argv)
