@@ -44,9 +44,13 @@ class Ui_Form(object):
                 lines = cur.fetchall()
                 for line  in enumerate(lines):
                     self.rectangles[line[0]] = line[1]
+                    x1 = line[1][1]
+                    x2 = line[1][2]
+                    y1 = line[1][3]
+                    y2 = line[1][4]
+                    self.create_rect(self,x1,y1,x2 - x1,y2 - y1)
         except Exception as e:
             print(f'Ошибка БД {e}')
-
     def add_item(self, id, x1= None, y1 = None, x2 = None, y2 = None):
         try:
             with sq.connect(self.db_name) as con:
@@ -55,6 +59,7 @@ class Ui_Form(object):
                     INSERT OR IGNORE INTO RECTANGLES VALUES (?, ?, ?, ?, ?)
                 """, (id, x1, y1, x2, y2))
                 con.commit()
+            self.create_rect(self,x1,y1,x2 - x1,y2 - y1)
         except Exception as e:
             print(f'Ошибка БД {e}')
     
