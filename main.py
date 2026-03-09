@@ -91,5 +91,3 @@ if __name__ == '__main__':
     bd1 = bd()
     bd1.create()
     bd1.load()
-    bd1.add_item(3, 22.0, 33.0, 23.0, 44.0)
-    bd1.delete(1)
