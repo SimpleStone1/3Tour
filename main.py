@@ -13,8 +13,7 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtGui import QPen,QBrush,QColor
 
 from PyQt5.QtCore import Qt
-
-import sqlite3 as sq
+from PyQt5.QtGui import QColor,QPen
 
 class Ui_Form(object):
     def __init__(self):
@@ -104,88 +103,73 @@ class Ui_Form(object):
                 con.commit()
         except Exception as e:
             print(f'Ошибка БД при обновлении: {e}')
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(884, 326)
-        self.tableWidget = QtWidgets.QTableWidget(Form)
-        self.tableWidget.setGeometry(QtCore.QRect(170, 70, 331, 191))
+            
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(1144, 827)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+
+        self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 0, 601, 731))
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(5)
-        self.tableWidget.setRowCount(3)
+        self.tableWidget.setRowCount(1)
+
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(0, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(0, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(1, 0, item)
-        self.graphicsView = QtWidgets.QGraphicsView(Form)
-        self.graphicsView.setGeometry(QtCore.QRect(570, 1, 400, 400))
+
+        for i in range(5):
+            item = QtWidgets.QTableWidgetItem()
+            self.tableWidget.setHorizontalHeaderItem(i, item)
+
+        self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
+        self.graphicsView.setGeometry(QtCore.QRect(610, 0, 531, 781))
         self.graphicsView.setObjectName("graphicsView")
+
+        self.widget = QtWidgets.QWidget(self.centralwidget)
+        self.widget.setGeometry(QtCore.QRect(10, 740, 591, 30))
+        self.widget.setObjectName("widget")
+
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+
+        self.add_new_object = QtWidgets.QPushButton(self.widget)
+        self.horizontalLayout.addWidget(self.add_new_object)
+
+        self.delet_select_object = QtWidgets.QPushButton(self.widget)
+        self.horizontalLayout.addWidget(self.delet_select_object)
+
+        self.calculate_button = QtWidgets.QPushButton(self.widget)
+        self.horizontalLayout.addWidget(self.calculate_button)
+
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1144, 26))
+        MainWindow.setMenuBar(self.menubar)
+
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
         self.scene = QtWidgets.QGraphicsScene(self.graphicsView)
-        # self.scene.setSceneRect(QtCore.QRectF(0,0,500, 500))
         self.graphicsView.setScene(self.scene)
-        pen=QPen(Qt.red,2)
-        pen1=QPen(Qt.green,5)
-        zal = QColor.fromRgb(255,255,255,150)
-        self.scene.addEllipse(1.0, 1.0, 100.0,100.0,pen,zal)
-        self.scene.addLine(1,1,500,500,pen1)
-        self.scene.addRect(1.0, 1.0, 160.0,170.0,pen)
-        self.scene.addText('234wr5etyr6t',)
- 
-        self.graphicsView.fitInView(self.scene.itemsBoundingRect(), Qt.AspectRatioMode.KeepAspectRatioByExpanding)
-        self.tableWidget.cellChanged.connect(self.functions)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
-
-    def retranslateUi(self, Form):
+    def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        item = self.tableWidget.verticalHeaderItem(0)
-        item.setText(_translate("Form", "Новая строка"))
-        item = self.tableWidget.verticalHeaderItem(1)
-        item.setText(_translate("Form", "Новая строка"))
-        item = self.tableWidget.verticalHeaderItem(2)
-        item.setText(_translate("Form", "Новая строка"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("Form", "ID"))
-        item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("Form", "X1"))
-        item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("Form", "Y1"))
-        item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("Form", "X2"))
-        item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("Form", "Y2"))
-        __sortingEnabled = self.tableWidget.isSortingEnabled()
-        self.tableWidget.setSortingEnabled(False)
-        item = self.tableWidget.item(0, 0)
-        item.setText(_translate("Form", "00"))
-        item = self.tableWidget.item(0, 1)
-        item.setText(_translate("Form", "01"))
-        item = self.tableWidget.item(0, 2)
-        item.setText(_translate("Form", "02"))
-        item = self.tableWidget.item(1, 0)
-        item.setText(_translate("Form", "10"))
-        self.tableWidget.setSortingEnabled(__sortingEnabled)
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.tableWidget.verticalHeaderItem(0).setText(_translate("MainWindow", "1"))
+        self.tableWidget.horizontalHeaderItem(0).setText(_translate("MainWindow", "ID"))
+        self.tableWidget.horizontalHeaderItem(1).setText(_translate("MainWindow", "X1"))
+        self.tableWidget.horizontalHeaderItem(2).setText(_translate("MainWindow", "Y1"))
+        self.tableWidget.horizontalHeaderItem(3).setText(_translate("MainWindow", "X2"))
+        self.tableWidget.horizontalHeaderItem(4).setText(_translate("MainWindow", "Y2"))
+        self.add_new_object.setText(_translate("MainWindow", "Добавить новый объект"))
+        self.delet_select_object.setText(_translate("MainWindow", "Удалить выбранный объект"))
+        self.calculate_button.setText(_translate("MainWindow", "Рассчитать"))
 
     # def get_id(self, row):
     #     return self.tableWidget.
@@ -194,18 +178,44 @@ class Ui_Form(object):
     def functions(self, *args):
         print(args)
         # self.tableWidget.cellChanged.connect(self.update_table)
-class MainWindow(QtWidgets.QWidget):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-
-        self.ui =Ui_Form()
+        self.ui = Ui_Form()
         self.ui.setupUi(self)
 
 
-# main = Ui_Form()
-# main.create()
-# main.load()
-# main.setupUi()
+        black = QPen(Qt.black,3)
+        ser = QColor(0,0,0,120)
+        white = QColor(255,255,255,255)
+        self.ui.scene.setBackgroundBrush(white)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0+mnog,1000,0+mnog,-1000,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0-mnog,1000,0-mnog,-1000,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0,0-mnog,1000,0-mnog,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0,0+mnog,1000,0+mnog,ser)
+
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(-1000,0-mnog,0,0-mnog,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(-1000,0+mnog,0,0+mnog,ser)
+
+
+        self.ui.scene.addLine(-1000,0,1000,0,black)
+        self.ui.scene.addLine(0,-1000,0,1000,black)
+
+        # for i in range(10):
+        #     mnog=i*100
+        #     self.ui.scene.addText(str(mnog),)
 app = QApplication(sys.argv)
 w =MainWindow()
 w.ui.create()
