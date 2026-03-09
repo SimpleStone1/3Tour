@@ -151,7 +151,7 @@ class Ui_Form(object):
         self.scene.addText('234wr5etyr6t',)
  
         self.graphicsView.fitInView(self.scene.itemsBoundingRect(), Qt.AspectRatioMode.KeepAspectRatioByExpanding)
-
+        self.tableWidget.cellChanged.connect(self.functions)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -187,9 +187,12 @@ class Ui_Form(object):
         item.setText(_translate("Form", "10"))
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
+    # def get_id(self, row):
+    #     return self.tableWidget.
+
     # def update_table(self, row, collum):   
-    def functions(self):
-        print(self.tableWidget.cellChanged)
+    def functions(self, *args):
+        print(args)
         # self.tableWidget.cellChanged.connect(self.update_table)
 class MainWindow(QtWidgets.QWidget):
     def __init__(self):
@@ -207,7 +210,7 @@ app = QApplication(sys.argv)
 w =MainWindow()
 w.ui.create()
 w.ui.load()
-w.ui.functions()
+# w.ui.functions()
 w.show()
 # main.functions()
 app.exec_()
