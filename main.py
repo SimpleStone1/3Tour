@@ -2,7 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QColor,QPen
 
 class Ui_Form(object):
     def setupUi(self, MainWindow):
@@ -80,12 +80,37 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
 
+        black = QPen(Qt.black,3)
+        ser = QColor(0,0,0,120)
         white = QColor(255,255,255,255)
         self.ui.scene.setBackgroundBrush(white)
-        
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0+mnog,1000,0+mnog,-1000,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0-mnog,1000,0-mnog,-1000,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0,0-mnog,1000,0-mnog,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(0,0+mnog,1000,0+mnog,ser)
+
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(-1000,0-mnog,0,0-mnog,ser)
+        for  i in range(10):
+            mnog=i*50
+            self.ui.scene.addLine(-1000,0+mnog,0,0+mnog,ser)
 
 
+        self.ui.scene.addLine(-1000,0,1000,0,black)
+        self.ui.scene.addLine(0,-1000,0,1000,black)
 
+        # for i in range(10):
+        #     mnog=i*100
+        #     self.ui.scene.addText(str(mnog),)
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
