@@ -221,13 +221,21 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.scene.addText(str(mnog)).moveBy(0,-mnog)
         for i in range(1,10):
             mnog=i*100
-            self.ui.scene.addText(str(mnog)).moveBy(0,mnog)
+            self.ui.scene.addText(str(-mnog)).moveBy(0,mnog)
         for i in range(1,10):
             mnog=i*100
             self.ui.scene.addText(str(mnog)).moveBy(mnog,0)
         for i in range(1,10):
             mnog=i*100
-            self.ui.scene.addText(str(mnog)).moveBy(-mnog,0)      
+            self.ui.scene.addText(str(-mnog)).moveBy(-mnog,0) 
+   
+
+
+    def create_rect(self,x,y,w,h):
+        pen_for_rect = QPen(Qt.blue,2)
+        self.ui.scene.addRect(x,-y,w,h,pen_for_rect)
+    
+
 app = QApplication(sys.argv)
 w =MainWindow()
 w.ui.create()
